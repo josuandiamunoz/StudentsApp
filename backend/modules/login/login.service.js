@@ -1,10 +1,8 @@
-const TEST_USER = {
-    email: 'admin@studentsapp.com',
-    password: '123456'
-}
+const studentsRepo = require('../students/students.repository');
 
 exports.login = async ({email, password}) => {
-    if (email === TEST_USER.email && password === TEST_USER.password) {
+    const user = await studentsRepo.findByEmail(email);
+    if (user && user.Password === password) {
         return { email };
     }
     else {
