@@ -14,6 +14,10 @@ function Login(){
                 email, 
                 password
             });
+            const token = response.data.data.token;
+            const userEmail = response.data.data.email;
+            localStorage.setItem("token", token);
+            localStorage.setItem("email", userEmail);
             alert("Login successful.");
         } catch (error) {
             alert("Login failed: " + error);
