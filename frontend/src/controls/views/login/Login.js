@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TextBox from "../../common/textbox/TextBox";
 import Button from "../../common/button/Button";
 
 
 function Login(){
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -18,7 +20,7 @@ function Login(){
             const userEmail = response.data.data.email;
             localStorage.setItem("token", token);
             localStorage.setItem("email", userEmail);
-            alert("Login successful.");
+            navigate("/main");
         } catch (error) {
             alert("Login failed: " + error);
         }
