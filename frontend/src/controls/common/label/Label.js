@@ -1,6 +1,6 @@
-function Label({ text }) {
+function Label({ text, className }) {
   return (
-    <span>
+    <span className={className}>
       {text}
     </span>
   );
