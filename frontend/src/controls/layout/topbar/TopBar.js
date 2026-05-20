@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "./TopBar.css";
 import Button from "../../common/button/Button";
 import Label from "../../common/label/Label";
 
@@ -14,8 +15,8 @@ function TopBar() {
 
     return (
         <div className="top-bar">
-            <Label text={`Logged in as ${email}`} />
-            <Button text="Log out" onClick={handleLogout} />
+            <Label text={`Logged in as ${email}`} className="top-bar-label" />
+            <Button text="Log out" onClick={handleLogout} className="top-bar-button" />
         </div>
     );
 }
