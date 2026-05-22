@@ -1,10 +1,15 @@
+import { Outlet } from 'react-router-dom';
 import TopBar from '../layout/topbar/TopBar';
+import LeftMenu from './leftmenu/LeftMenu';
 
 function Main() {
     return (
         <div>
             <TopBar />
-            <h1>This is the main page</h1>
+            <LeftMenu />
+            <div>
+                 <Outlet />
+            </div>
         </div>
     );
 }

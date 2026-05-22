@@ -1,0 +1,11 @@
+.left-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 10%;
+    height: 100%;
+}
+
+.left-menu-button {
+    width: 120px;
+}
