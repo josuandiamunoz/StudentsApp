@@ -20,7 +20,7 @@ function Login(){
             const userEmail = response.data.data.email;
             localStorage.setItem("token", token);
             localStorage.setItem("email", userEmail);
-            navigate("/main");
+            navigate("/main/students");
         } catch (error) {
             alert("Login failed: " + error);
         }
