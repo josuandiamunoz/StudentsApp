@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "./TopBar.css";
+import "./Bar.css";
 import Button from "../../common/button/Button";
 import Label from "../../common/label/Label";
 
