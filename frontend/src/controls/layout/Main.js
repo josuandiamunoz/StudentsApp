@@ -1,14 +1,17 @@
+import './Main.css';
 import { Outlet } from 'react-router-dom';
-import TopBar from '../layout/topbar/TopBar';
-import LeftMenu from './leftmenu/LeftMenu';
+import Bar from './bar/Bar';
+import Menu from './menu/Menu';
 
 function Main() {
     return (
-        <div>
-            <TopBar />
-            <LeftMenu />
-            <div>
-                 <Outlet />
+        <div className='main'>
+            <div className='top'>
+                <Bar />
+            </div>
+            <div className='bottom'>
+                <Menu />
+                <Outlet />
             </div>
         </div>
     );
