@@ -8,6 +8,11 @@ class StudentsRepository {
         return result.length > 0 ? result[0] : null;
     }
 
+    async findAll() {
+        const sql = 'SELECT * FROM Students';
+        return await database.query(sql);
+    }
+
 }
 
 module.exports = new StudentsRepository();
