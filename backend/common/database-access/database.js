@@ -32,6 +32,22 @@ class Database{
         }    
     }
 
+    async delete(sql, params = {}) {
+        try {
+            const pool = await this.connect();  
+            const request =  pool.request();
+            for(const key in params){
+                request.input(key, params[key]);
+            }
+            const result = await request.query(sql);
+            const deleted = result.rowsAffected[0] > 0;
+            return deleted;
+        }
+        catch (err) {
+            throw err;
+        }
+    }
+
 }
 
 module.exports = new Database();
