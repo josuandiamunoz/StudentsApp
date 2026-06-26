@@ -36,7 +36,7 @@ function Students() {
     return (
         <div>
             <h1>Students list</h1>
-            <Button onClick={loadStudents} text={loading ? 'Loading...' : 'Reload'} />
+            <Button onClick={loadStudents} text={loading ? 'Loading...' : 'Reload'} enabled={!loading} />
             {error && <p style={{ color: "red" }}>{error}</p>}
             <table>
                 <thead>
