@@ -19,7 +19,8 @@ function Students() {
                     Authorization: `Bearer ${token}`
                 }
             });
-            setStudents(response.data.data);
+            if(response.data.success) setStudents(response.data.data);
+            else throw new Error("Error loading students. " + response.data.message);
         }
         catch (error) {
             setError("Could not load students: " + error.message);
@@ -38,22 +39,28 @@ function Students() {
             <h1>Students list</h1>
             <Button onClick={loadStudents} text={loading ? 'Loading...' : 'Reload'} enabled={!loading} />
             {error && <p style={{ color: "red" }}>{error}</p>}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {students.map((student) => (
-                        <tr key={student.Identifier}>
-                            <td>{student.Identifier}</td>
-                            <td>{student.Email}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            {students.length === 0 ? (
+                    <p>No students found.</p>
+                ) : (
+                   <table>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {students.map((student) => (
+                                <tr key={student.Identifier}>
+                                    <td>{student.Identifier}</td>
+                                    <td>{student.Email}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )
+            }
+
         </div>
     );
 }
