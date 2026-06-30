@@ -30,6 +30,28 @@ function Students() {
         }
     };
 
+    const deleteStudent = async (id) => {
+        try{
+            setLoading(true);
+            setError("");
+
+            const token = localStorage.getItem("token");
+            const response = await axios.delete(`http://localhost:3001/students/delete/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if(response.data.success) setStudents((prev) => prev.filter((s) => s.Identifier !== id));
+            else throw new Error("Error deleting student : " + response.data.message);
+        }
+        catch (error) {
+            setError("Could not delete student: " + error.message);
+        }
+        finally{
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
         loadStudents();
     }, []);
@@ -54,6 +76,9 @@ function Students() {
                                 <tr key={student.Identifier}>
                                     <td>{student.Identifier}</td>
                                     <td>{student.Email}</td>
+                                    <td>
+                                        <Button onClick={() => deleteStudent(student.Identifier)} text="Delete" />
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
