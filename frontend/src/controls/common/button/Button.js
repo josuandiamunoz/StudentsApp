@@ -1,4 +1,4 @@
-function Button({ onClick, text, className, enabled }) {
+function Button({ onClick, text, className, enabled = true }) {
     return (
         <button onClick={onClick} className={className} disabled={!enabled}>
             {text}
