@@ -8,6 +8,17 @@ class StudentsRepository {
         return result.length > 0 ? result[0] : null;
     }
 
+    async findAll() {
+        const sql = 'SELECT * FROM Students';
+        return await database.query(sql);
+    }
+
+    async delete(identifier) {
+        const sql = 'DELETE FROM Students WHERE Identifier = @identifier';
+        const deleted = await database.delete(sql, { identifier });
+        return deleted;
+    }
+
 }
 
 module.exports = new StudentsRepository();
