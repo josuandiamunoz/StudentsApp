@@ -11,7 +11,9 @@ pipeline {
 
         stage('Backend Linting') {
             steps {
-                bat 'npm run lint'
+                dir('backend') { 
+                    bat 'npm run lint'
+                }
             }
         }
     }
