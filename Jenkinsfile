@@ -8,5 +8,11 @@ pipeline {
                 echo "Repository from branch ${env.BRANCH_NAME} correctly downloaded"
             }
         }
+
+        stage('Backend Linting') {
+            steps {
+                bat 'npm run lint'
+            }
+        }
     }
 }
