@@ -9,6 +9,14 @@ pipeline {
             }
         }
 
+        stage('Backend Dependencies') {
+            steps {
+                dir('backend') {
+                    bat 'npm ci'
+                }
+            }
+        }
+
         stage('Backend Linting') {
             steps {
                 dir('backend') { 
