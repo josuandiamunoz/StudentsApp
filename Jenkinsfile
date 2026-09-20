@@ -21,6 +21,14 @@ pipeline {
             steps {
                 dir('backend') { 
                     bat 'npm run lint -- --format json --output-file eslint-report.json'
+					recordIssues(
+                        tools: [
+                            eslint(pattern: 'eslint-report.json')
+                        ],
+                        qualityGates: [
+                            [threshold: 10, type: 'TOTAL', unstable: false]
+                        ]
+                    )
                 }
             }
         }
