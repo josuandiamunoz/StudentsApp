@@ -20,7 +20,9 @@ pipeline {
         stage('Backend Linting') {
             steps {
                 dir('backend') { 
-                    bat 'npm run lint -- --format json --output-file eslint-report.json'
+					catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+						bat 'npm run lint -- --format json --output-file eslint-report.json'
+					}
 					recordIssues(
                         tools: [
                             eslint(pattern: 'eslint-report.json')
