@@ -25,7 +25,7 @@ pipeline {
 					}
 					recordIssues(
                         tools: [
-                            eslint(pattern: 'eslint-report.json')
+                            esLint(pattern: 'eslint-report.json')
                         ],
                         qualityGates: [
                             [threshold: 10, type: 'TOTAL', unstable: false]
