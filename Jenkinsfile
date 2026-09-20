@@ -20,7 +20,7 @@ pipeline {
         stage('Backend Linting') {
             steps {
                 dir('backend') { 
-                    bat 'npm run lint'
+                    bat 'npm run lint -- --format json --output-file eslint-report.json'
                 }
             }
         }
