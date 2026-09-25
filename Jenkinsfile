@@ -34,5 +34,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Build Docker Image') {
+            steps {
+                dir('backend') {
+                    bat "docker build -t students-backend:${env.BUILD_NUMBER} -t students-backend:latest ."
+                }
+            }
+        }
     }
 }
