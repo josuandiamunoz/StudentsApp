@@ -12,7 +12,8 @@ function Login(){
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post("http://localhost:3001/login", { 
+            const backend = process.env.BACKEND_API || "http://localhost:3001";
+            const response = await axios.post(`${backend}/login`, { 
                 email, 
                 password
             });
