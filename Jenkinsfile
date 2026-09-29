@@ -35,10 +35,18 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build Docker Backend Image') {
             steps {
                 dir('backend') {
                     bat "docker build -t students-backend:${env.BUILD_NUMBER} -t students-backend:latest ."
+                }
+            }
+        }
+
+        stage('Build Docker Frontend Image') {
+            steps {
+                dir('frontend') {
+                    bat "docker build -t students-frontend:${env.BUILD_NUMBER} -t students-frontend:latest ."
                 }
             }
         }
