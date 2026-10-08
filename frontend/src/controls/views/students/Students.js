@@ -14,7 +14,7 @@ function Students() {
             setError("");
 
             const token = localStorage.getItem("token");
-            const backend = process.env.REACT_APP_BACKEND_API;
+            const backend = window.APP_CONFIG.REACT_APP_BACKEND_API;
             const response = await axios.get(`${backend}/students`, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -37,7 +37,7 @@ function Students() {
             setError("");
 
             const token = localStorage.getItem("token");
-            const backend = process.env.REACT_APP_BACKEND_API;
+            const backend = window.APP_CONFIG.REACT_APP_BACKEND_API;
             const response = await axios.delete(`${backend}/students/delete/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`

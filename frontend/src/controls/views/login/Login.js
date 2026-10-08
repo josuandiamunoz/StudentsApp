@@ -12,7 +12,7 @@ function Login(){
 
     const handleLogin = async () => {
         try {
-            const backend = process.env.REACT_APP_BACKEND_API;
+            const backend = window.APP_CONFIG.REACT_APP_BACKEND_API;
             const response = await axios.post(`${backend}/login`, { 
                 email, 
                 password
