@@ -47,7 +47,7 @@ pipeline {
             steps {
                 dir('frontend') {
                     echo "Backend API : ${env.BACKEND_API}."
-                    bat "docker build --build-arg REACT_APP_BACKEND_API=${env.BACKEND_API} -t students-frontend:${env.BUILD_NUMBER} -t students-frontend:latest ."
+                    bat "docker build -t students-frontend:${env.BUILD_NUMBER} -t students-frontend:latest ."
                 }
             }
         }
