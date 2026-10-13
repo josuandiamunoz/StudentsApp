@@ -43,6 +43,14 @@ pipeline {
             }
         }
 
+        stage('Build Docker Database Image') {
+            steps {
+                dir('database') {
+                    bat "docker build -t students-database:${env.BUILD_NUMBER} -t students-database:latest ."
+                }
+            }
+        }
+
         stage('Build Docker Frontend Image') {
             steps {
                 dir('frontend') {
