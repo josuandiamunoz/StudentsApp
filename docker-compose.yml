@@ -16,6 +16,16 @@ services:
       - JWT_SECRET=${JWT_SECRET}
     restart: always
 
+  database:
+    image: students-database:latest
+    container_name: students-database
+    ports:
+      - "1435:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${DB_PASSWORD}
+    restart: unless-stopped
+
   frontend:
     image: students-frontend:latest
     container_name: students-frontend
