@@ -39,3 +39,6 @@ services:
     depends_on:
       - backend
     restart: always
+
+volumes:
+  mssql_data:
