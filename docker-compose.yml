@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  backend:
+    image: students-backend:latest
+    container_name: students-backend
+    ports:
+      - "${BACKEND_EXTERNAL_PORT}:3001"
+    environment:
+      - DB_SERVER=${DB_SERVER}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_API_PORT=${DB_API_PORT}
+      - DB_CORS_ORIGIN=${DB_CORS_ORIGIN}
+      - JWT_SECRET=${JWT_SECRET}
+    restart: always
+
+  database:
+    image: students-database:latest
+    container_name: students-database
+    ports:
+      - "1435:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - mssql_data:/var/opt/mssql
+    restart: unless-stopped
+
+  frontend:
+    image: students-frontend:latest
+    container_name: students-frontend
+    ports:
+      - "${FRONTEND_EXTERNAL_PORT}:3000"
+    environment:
+      - REACT_APP_BACKEND_API=${BACKEND_API}
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  mssql_data:
