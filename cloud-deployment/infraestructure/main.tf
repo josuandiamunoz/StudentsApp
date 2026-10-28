@@ -1,3 +1,8 @@
+resource "aws_key_pair" "deployer" {
+  key_name   = "my-ssh-key"
+  public_key = file("~/.ssh/id_rsa.pub")
+}
+
 resource "aws_security_group" "ssh_access" {
   name        = "allow_ssh"
   description = "Allow SSH traffic"
@@ -21,6 +26,7 @@ resource "aws_instance" "vm" {
   ami           = var.ami_id
   instance_type = var.instance_type
   security_groups = [aws_security_group.ssh_access.name]
+  key_name        = aws_key_pair.deployer.key_name
 
   tags = {
     Name = var.instance_name
