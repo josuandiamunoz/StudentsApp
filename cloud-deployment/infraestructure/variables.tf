@@ -21,3 +21,18 @@ variable "instance_name" {
   type        = string
   default     = "Virtual Machine for StudentsApp"
 }
+
+variable "frontend_external_port" {
+  type    = number
+  default = 3000
+}
+
+variable "backend_external_port" {
+  type    = number
+  default = 3006
+}
+
+variable "db_external_port" {
+  type    = number
+  default = 1435
+}
