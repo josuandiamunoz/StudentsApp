@@ -1,0 +1,26 @@
+---
+- name: Log in to Docker Hub
+  community.docker.docker_login:
+    registry_url: "{{ docker_registry }}"
+    username: "{{ docker_username }}"
+    password: "{{ dockerhub_token }}"
+    state: present
+
+- name: Ensure Docker service is running
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Pull images from registry
+  community.docker.docker_image:
+    name: "{{ docker_repo }}:{{ item }}"
+    source: pull
+  loop: "{{ images }}"
+  register: pull_results
+
+- name: Verify downloaded images
+  ansible.builtin.debug:
+    msg: "Image {{ docker_repo }}:{{ item.item }} downloaded successfully."
+  loop: "{{ pull_results.results }}"
+  when: item is changed
